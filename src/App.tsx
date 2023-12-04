@@ -26,8 +26,8 @@ function App() {
         )}
         
       </div>
-      {isModalOpen && <CreateModal closeModal/>} 
-      <button onClick={handleOpenModal}>novo</button>
+      {isModalOpen && <CreateModal closeModal={handleOpenModal}/>} 
+      <button className='btn-postar' onClick={handleOpenModal}>novo</button>
       </div>
   )
 }

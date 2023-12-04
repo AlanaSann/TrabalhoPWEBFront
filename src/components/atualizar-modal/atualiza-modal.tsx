@@ -1,8 +1,9 @@
 import { useEffect, useState } from "react";
 import { usePacienteDataMutate } from "../hooks/usePacienteDataMutate";
 import { PacienteData } from "../../interface/PacienteData";
-import "./modal.css"
+
 import { Endereco } from "../../interface/Endereco";
+import { editProps, usePacienteEdit } from "../hooks/editPaciente";
 
 interface InputProps{
     label: string,
@@ -11,6 +12,8 @@ interface InputProps{
 }
 
 interface ModalProps{
+    cpf: string,
+    email: string,
     closeModal(): void
 }
 
@@ -24,10 +27,8 @@ const Input = ({label, value, updateValue}: InputProps) => {
 }
 
 
-export function CreateModal({ closeModal}: ModalProps){
+export function AtualizaModal({ closeModal,cpf,email}: ModalProps){
     const [nome, setNome] = useState("");
-    const [email, setEmail] = useState("");
-    const [cpf, setCpf] = useState("");
     const [telefone, setTelefone] = useState("");
     const [logradouro, setLogradouro] = useState("");
     const [numero, setNumero] = useState(0);
@@ -38,7 +39,7 @@ export function CreateModal({ closeModal}: ModalProps){
     const [cep, setCep] = useState("");
     
     
-    const {mutate, isSuccess} = usePacienteDataMutate();
+    const {mutate, isSuccess} = usePacienteEdit();
 
     const submit = () => {
         const endereco: Endereco ={
@@ -58,7 +59,12 @@ export function CreateModal({ closeModal}: ModalProps){
             endereco
         }
 
-        mutate(pacienteData)
+        const editaProps:editProps = {
+            cpf,
+            pacienteData
+        }
+
+        mutate(editaProps)
     }
 
    useEffect(() => {
@@ -72,8 +78,6 @@ export function CreateModal({ closeModal}: ModalProps){
                 <h2>Cadastre um novo paciente</h2>
                 <form className="input-container">
                     <Input label="nome" value={nome} updateValue={setNome}/>
-                    <Input label="cpf" value={cpf} updateValue={setCpf}/>
-                    <Input label="email" value={email} updateValue={setEmail}/>
                     <Input label="telefone" value={telefone} updateValue={setTelefone}/>
                     <Input label="logradouro" value={logradouro} updateValue={setLogradouro}/>
                     <Input label="numero" value={numero} updateValue={setNumero}/>

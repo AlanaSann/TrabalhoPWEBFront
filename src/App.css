@@ -12,8 +12,8 @@
     gap: 16px;
 }
   
-.container button {
-    background-color: #0275d8;
+.container .btn-postar {
+    background-color: #02d842;
     color: white;
     font-weight: bold;
     position: fixed;
@@ -21,6 +21,7 @@
     right: 24px;
     transition: all 0.1s linear 0.1s;
 }
+
   
 .container button:hover {
     box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 7px 0px;
