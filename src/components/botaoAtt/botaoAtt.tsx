@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { usePacienteEdit } from "../hooks/editPaciente";
+import { usePacienteEdit } from "../hooks/pacientes/editPaciente";
 import { AtualizaModal } from "../atualizar-modal/atualiza-modal";
 
 interface EditProps{

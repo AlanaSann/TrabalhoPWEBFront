@@ -1,9 +1,9 @@
 import { useEffect, useState } from "react";
-import { usePacienteDataMutate } from "../hooks/usePacienteDataMutate";
+import { usePacienteDataMutate } from "../hooks/pacientes/usePacienteDataMutate";
 import { PacienteData } from "../../interface/PacienteData";
 
 import { Endereco } from "../../interface/Endereco";
-import { editProps, usePacienteEdit } from "../hooks/editPaciente";
+import { editProps, usePacienteEdit } from "../hooks/pacientes/editPaciente";
 
 interface InputProps{
     label: string,

@@ -1,8 +1,8 @@
 import { useEffect, useState } from "react";
-import { usePacienteDataMutate } from "../hooks/pacientes/usePacienteDataMutate";
-import { PacienteData } from "../../interface/PacienteData";
 import "./modal.css"
 import { Endereco } from "../../interface/Endereco";
+import { MedicoData } from "../../interface/MedicoData";
+import { useMedicoDataMutate } from "../hooks/medicos/postMedico";
 
 interface InputProps{
     label: string,
@@ -24,10 +24,11 @@ const Input = ({label, value, updateValue}: InputProps) => {
 }
 
 
-export function CreateModal({ closeModal}: ModalProps){
+export function CreateModalMedico({ closeModal}: ModalProps){
     const [nome, setNome] = useState("");
     const [email, setEmail] = useState("");
-    const [cpf, setCpf] = useState("");
+    const [crm, setCrm] = useState("");
+    const [especialidade, setEspecialidade] = useState("");
     const [telefone, setTelefone] = useState("");
     const [logradouro, setLogradouro] = useState("");
     const [numero, setNumero] = useState(0);
@@ -38,7 +39,7 @@ export function CreateModal({ closeModal}: ModalProps){
     const [cep, setCep] = useState("");
     
     
-    const {mutate, isSuccess} = usePacienteDataMutate();
+    const {mutate, isSuccess} = useMedicoDataMutate();
 
     const submit = () => {
         const endereco: Endereco ={
@@ -50,15 +51,16 @@ export function CreateModal({ closeModal}: ModalProps){
             uf,
             cep
         }
-        const pacienteData: PacienteData = {
-            cpf,
+        const medicoData: MedicoData = {
+            crm,
             nome,
             email,
+            especialidade,
             telefone,
             endereco
         }
 
-        mutate(pacienteData)
+        mutate(medicoData)
     }
 
    useEffect(() => {
@@ -69,10 +71,11 @@ export function CreateModal({ closeModal}: ModalProps){
     return(
         <div className="modal-overlay">
             <div className="modal-body">
-                <h2>Cadastre um novo paciente</h2>
+                <h2>Cadastre um novo médico</h2>
                 <form className="input-container">
                     <Input label="nome" value={nome} updateValue={setNome}/>
-                    <Input label="cpf" value={cpf} updateValue={setCpf}/>
+                    <Input label="crm" value={crm} updateValue={setCrm}/>
+                    <Input label="especialidade" value={especialidade} updateValue={setEspecialidade}/>
                     <Input label="email" value={email} updateValue={setEmail}/>
                     <Input label="telefone" value={telefone} updateValue={setTelefone}/>
                     <Input label="logradouro" value={logradouro} updateValue={setLogradouro}/>

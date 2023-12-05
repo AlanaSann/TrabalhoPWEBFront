@@ -1,7 +1,7 @@
-import { Edit } from "./botaoAtt/botaoAtt";
+import { Edit } from "../botaoAtt/botaoAtt";
 import "./card.css"
-import { usePacienteDelete } from "./hooks/deletePaciente"
-import { usePacienteEdit } from "./hooks/editPaciente";
+import { usePacienteDelete } from "../hooks/pacientes/deletePaciente"
+import { usePacienteEdit } from "../hooks/pacientes/editPaciente";
 
 interface CardProps{
     nome: string,

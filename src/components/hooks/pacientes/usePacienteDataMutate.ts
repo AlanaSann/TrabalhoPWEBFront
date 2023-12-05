@@ -1,5 +1,5 @@
 import axios, { AxiosPromise } from "axios"
-import { PacienteData } from "../../interface/PacienteData";
+import { PacienteData } from "../../../interface/PacienteData";
 import { useMutation,useQueryClient } from "@tanstack/react-query";
 
 
