@@ -1,15 +1,15 @@
 import { useState } from "react";
-import { usePacienteEdit } from "../hooks/pacientes/editPaciente";
-import { AtualizaModal } from "../atualizar-modal/atualiza-modal";
+import { AtualizaModalMedico } from "../atualizar-modal/attMedico-modal";
 
-interface EditProps{
+interface MedicoProps{
     nome: string,
     email: string,
-    cpf: string
+    crm: string,
+    especialidade: string
 }
 
 
-export function Edit({ nome, email, cpf} : EditProps){
+export function EditMedico({ nome, email, crm,especialidade} : MedicoProps){
     
     const [isModalOpen, setIsModalOpen]= useState(false);
 
@@ -20,11 +20,10 @@ export function Edit({ nome, email, cpf} : EditProps){
     }
     return(
         
-        <div>
+        <>
         <button className="editarbtn" onClick={handleOpenModal}>editar</button>
-        {isModalOpen && <AtualizaModal closeModal={handleOpenModal}cpf={cpf}email={email}/>} 
-        
-        </div>
+        {isModalOpen && <AtualizaModalMedico closeModal={handleOpenModal}crm={crm}email={email}especialidade={especialidade}/>} 
+        </>
        
     )
 }

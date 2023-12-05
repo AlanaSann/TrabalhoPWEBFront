@@ -1,8 +1,7 @@
 import { useEffect, useState } from "react";
-import "./modal.css"
 import { Endereco } from "../../interface/Endereco";
+import { medicoProps, useMedicoEdit } from "../hooks/medicos/putMedicos";
 import { MedicoData } from "../../interface/MedicoData";
-import { useMedicoDataMutate } from "../hooks/medicos/postMedico";
 
 interface InputProps{
     label: string,
@@ -11,6 +10,9 @@ interface InputProps{
 }
 
 interface ModalProps{
+    crm: string,
+    email: string,
+    especialidade: string
     closeModal(): void
 }
 
@@ -24,11 +26,8 @@ const Input = ({label, value, updateValue}: InputProps) => {
 }
 
 
-export function CreateModalMedico({ closeModal}: ModalProps){
+export function AtualizaModalMedico({ closeModal,crm,email,especialidade}: ModalProps){
     const [nome, setNome] = useState("");
-    const [email, setEmail] = useState("");
-    const [crm, setCrm] = useState("");
-    const [especialidade, setEspecialidade] = useState("");
     const [telefone, setTelefone] = useState("");
     const [logradouro, setLogradouro] = useState("");
     const [numero, setNumero] = useState(0);
@@ -39,7 +38,7 @@ export function CreateModalMedico({ closeModal}: ModalProps){
     const [cep, setCep] = useState("");
     
     
-    const {mutate, isSuccess} = useMedicoDataMutate();
+    const {mutate, isSuccess} = useMedicoEdit();
 
     const submit = () => {
         const endereco: Endereco ={
@@ -55,13 +54,17 @@ export function CreateModalMedico({ closeModal}: ModalProps){
             crm,
             nome,
             email,
-            especialidade,
             telefone,
-            endereco
+            endereco,
+            especialidade
         }
-        console.log(medicoData);
-        
-        mutate(medicoData)
+
+        const editaProps:medicoProps = {
+            crm,
+            medicoData
+        }
+
+        mutate(editaProps)
     }
 
    useEffect(() => {
@@ -75,9 +78,6 @@ export function CreateModalMedico({ closeModal}: ModalProps){
                 <h2>Cadastre um novo médico</h2>
                 <form className="input-container">
                     <Input label="nome" value={nome} updateValue={setNome}/>
-                    <Input label="crm" value={crm} updateValue={setCrm}/>
-                    <Input label="especialidade" value={especialidade} updateValue={setEspecialidade}/>
-                    <Input label="email" value={email} updateValue={setEmail}/>
                     <Input label="telefone" value={telefone} updateValue={setTelefone}/>
                     <Input label="logradouro" value={logradouro} updateValue={setLogradouro}/>
                     <Input label="numero" value={numero} updateValue={setNumero}/>

@@ -1,6 +1,6 @@
-import { Edit } from "../botaoAtt/botaoAtt";
-import "./card.css"
+import "./cardMedico.css"
 import { useMedicoDelete } from "../hooks/medicos/delMedico";
+import { EditMedico } from "../botaoAtt/botaoAttMedico";
 
 interface MedicoProps{
     nome: string,
@@ -21,18 +21,21 @@ export function CardMedico({ nome, email, crm,especialidade} : MedicoProps){
         <div className="card">
             
             <div className="texto">
-            <p><b>{nome}</b></p>
+            <p>{nome}</p>
             <p>CRM: {crm}</p>
-            <p>Email: {email}</p></div>
+            <p>Email: {email}</p>
             <p>Especialidade: {especialidade}</p>
+            </div>
+            
 
             <div className="butao">
                 <button className="deletarbtn" onClick={submitExcluir}>excluir</button>
-                {/* <Edit
+                { <EditMedico
                     nome= {nome}
                     email={email}
-                    cpf= {crm}
-                /> */}
+                    crm= {crm}
+                    especialidade={especialidade}
+                /> }
             </div>
 
         </div>

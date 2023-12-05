@@ -16,7 +16,7 @@
     background-color: white;
     padding: 24px;
     max-height: 80vh; /* Set a maximum height for the modal body */
-    width: 60%;
+    width: 30%;
     border-radius: 24px;
     overflow-y: auto;
     display: flex;
@@ -30,7 +30,7 @@
 }
 
 .modal-overlay .modal-body .input-container {
-    width: calc(25% - 22px);
+    width: calc(100% - 22px);
 }
 
 .modal-overlay .modal-body input {
@@ -58,7 +58,7 @@
 }
 
 .modal-overlay .modal-body .btn-secondary:hover {
-    background-color: #06e7f7;
+    background-color: #f70606;
     transform: scale(1);
 }
 

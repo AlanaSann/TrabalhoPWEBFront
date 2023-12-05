@@ -2,7 +2,6 @@ import { useState } from 'react';
 import { Card } from '../components/cards/card';
 import { usePacienteData } from '../components/hooks/pacientes/usePacienteData';
 import { CreateModal } from '../components/create-modal/create-modal';
-import { PacienteData } from '../interface/PacienteData';
 
 function Paciente() {
     const {data} = usePacienteData();
